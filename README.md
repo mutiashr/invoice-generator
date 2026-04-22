@@ -13,6 +13,12 @@ No installation. No login. Just open and use.
 
 ---
 
+## 📸 Preview
+
+![Preview](assets/images/preview.png)
+
+---
+
 ## ✨ Features
 
 * 🔢 Auto-generated invoice numbers
