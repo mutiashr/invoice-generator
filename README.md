@@ -28,15 +28,6 @@ This project is designed for:
 
 ---
 
-## 📸 Preview
-
-<!-- Tambahin screenshot UI lu di sini nanti -->
-
-Example:
-![Preview](./preview.png)
-
----
-
 ## 🛠️ Tech Stack
 
 * Frontend: HTML / CSS / JavaScript *(or your actual stack, jangan ngarang)*
