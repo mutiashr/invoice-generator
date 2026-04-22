@@ -1,79 +1,133 @@
-# 💼 Invoice Generator
+# 💼 Invoice Generator — QRIS Ready
 
-Simple, modern, and practical invoice generator built for freelancers, small businesses, and personal use.
-Generate professional invoices with QRIS payment support and export them instantly as PDF or image.
+Modern invoice generator built for freelancers and small businesses in Indonesia.
+Create clean, professional invoices in seconds with built-in QRIS support and instant export.
 
 ---
 
-## 🚀 Features
+## 🌐 Live Demo
 
-* 🔢 Auto-generate invoice numbers
+👉 https://mcnsterjae-invoice.netlify.app/
+
+No installation. No login. Just open and use.
+
+---
+
+## ✨ Features
+
+* 🔢 Auto-generated invoice numbers
 * 🧾 Add multiple items (qty, price, notes)
-* 💸 Support for discount, tax (PPN), and additional fees
-* 📅 Due date & payment status tracking
-* 📱 QRIS integration (static & dynamic)
-* 🖨️ Export invoice to PDF or PNG
-* ⚡ Clean and minimal UI
+* 💸 Discount, tax (PPN), and additional cost support
+* 📅 Due date and payment status tracking
+* 📱 QRIS integration (static & dynamic display)
+* 🖨️ Export to PDF or PNG
+* ⚡ Real-time invoice preview
+* 🎨 Clean, minimal, and professional UI
 
 ---
 
-## 🧠 Use Case
+## 🎯 Problem It Solves
 
-This project is designed for:
+Most invoice tools are:
 
-* Freelancers (design, dev, content, etc.)
-* Small business owners
-* Students managing side income
-* Anyone who needs quick invoice generation without complex tools
+* Too complex
+* Not optimized for Indonesian users
+* Lack support for QRIS payments
+
+This tool focuses on:
+
+> Fast, simple, and locally relevant invoicing.
 
 ---
+
+## 🧠 Use Cases
+
+* Freelancers (design, development, writing, etc.)
+* UMKM / small business owners
+* Students with side projects
+* Anyone who needs quick invoice generation
+
+---
+
 
 ## 🛠️ Tech Stack
 
-* Frontend: HTML / CSS / JavaScript *(or your actual stack, jangan ngarang)*
-* PDF Generator: *(misalnya jsPDF / html2pdf)*
-* QRIS Integration: Static & Dynamic QR support
+* HTML5
+* CSS3 (custom design system)
+* Vanilla JavaScript
+
+Libraries:
+
+* html2canvas → capture invoice
+* jsPDF → export PDF
 
 ---
 
-## 📦 How to Use
+## 🚀 How to Use
 
-1. Clone repository
+1. Clone this repository
 
-```
+```id="cmd1"
 git clone https://github.com/your-username/invoice-generator.git
 ```
 
-2. Open project
+2. Open project folder
 
-```
+```id="cmd2"
 cd invoice-generator
 ```
 
 3. Run locally
-   (tergantung stack lu, isi sendiri. jangan kosong bego 😭)
+   Open `index.html` in your browser.
 
 ---
 
-## 💡 Future Improvements
+## 📦 Core Functionalities
 
-* Save invoice history (database)
-* User authentication
+* Dynamic invoice form
+* Real-time preview rendering
+* Automatic price calculation
+* QRIS upload & display
+* One-click export (PDF / PNG)
+
+---
+
+## ⚠️ Limitations
+
+* No database (data is not saved permanently)
+* QRIS is for display only (no real payment processing)
+* No multi-user system
+
+---
+
+## 🔧 Future Improvements
+
+* Auto-save (localStorage)
+* Invoice history
 * Multi-client management
-* Dark mode (biar keliatan edgy dikit)
-* API integration
+* Custom branding (logo, theme)
+* Authentication system
+* Dark mode
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+MIT License — free to use and modify.
 
 ---
 
-## ✨ Author
+## 👤 Author
 
-Created by **mcnsterjae**
+**mcnsterjae**
 Creative Works · Palembang
+
+---
+
+## 💡 Final Note
+
+This project is built with simplicity in mind.
+
+> No setup. No complexity. Just generate and send your invoice.
 
 ---
