@@ -172,7 +172,7 @@ function generateQROnCanvas(canvas, text) {
       height: size,
       colorDark: '#000',
       colorLight: '#fff',
-      correctLevel: QRCode.CorrectLevel.M
+      correctLevel: QRCode.CorrectLevel.H
     });
     setTimeout(() => {
       const img = tmp.querySelector('img') || tmp.querySelector('canvas');
