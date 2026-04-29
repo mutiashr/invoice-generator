@@ -24,11 +24,7 @@
   }
 
   /* ── APP SHELL ── */
-  .app { 
-    display: flex; 
-    flex-direction: row; 
-    min-height: 100vh; 
-}
+  .app { display: flex; min-height: 100vh; }
 
   .sidebar {
     width: 420px;
@@ -902,10 +898,4 @@
     .inv-notes-block {
         text-align: left; /* Catatan tetap rata kiri biar rapi */
     }
-}
-
-canvas {
-    max-width: 100%;
-    height: auto !important;
-    image-rendering: -webkit-optimize-contrast;
 }
