@@ -392,13 +392,14 @@
 
   /* ── INVOICE DOCUMENT ── */
   .invoice-doc {
-    width: 100%;
-    max-width: 720px;
+    width: 720px;
+    min-width: 720px;
     background: #fff;
     border-radius: 16px;
     box-shadow: var(--shadow-lg);
     overflow: hidden;
     position: relative;
+    transform-origin: top center;
   }
 
   .invoice-header {
