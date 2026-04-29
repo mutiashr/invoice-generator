@@ -24,7 +24,11 @@
   }
 
   /* ── APP SHELL ── */
-  .app { display: flex; min-height: 100vh; }
+  .app { 
+    display: flex; 
+    flex-direction: row; 
+    min-height: 100vh; 
+}
 
   .sidebar {
     width: 420px;
@@ -43,6 +47,12 @@
     padding: 32px 28px 24px;
     border-bottom: 1px solid rgba(255,255,255,0.08);
   }
+
+  .preview-panel {
+    flex: 1;
+    padding: 20px; /* Diperkecil dari 40px */
+    width: 100%;
+}
 
   .brand {
     display: flex;
@@ -865,3 +875,37 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
   .export-loading-text { font-size: 14px; font-weight: 500; opacity: 0.85; }
+
+  @media (max-width: 900px) {
+    .app { flex-direction: column; }
+    .sidebar { 
+        width: 100%; 
+        min-width: 100%; 
+        height: auto; 
+        position: relative; 
+    }
+    .preview-panel { padding: 10px; }
+    .invoice-doc { border-radius: 0; }
+}
+
+@media (max-width: 600px) {
+    .inv-payment {
+        flex-direction: column-reverse; /* Rekening (info) pindah ke bawah QRIS */
+        align-items: center;
+        text-align: center;
+    }
+    
+    .inv-payment-info {
+        width: 100%;
+    }
+
+    .inv-notes-block {
+        text-align: left; /* Catatan tetap rata kiri biar rapi */
+    }
+}
+
+canvas {
+    max-width: 100%;
+    height: auto !important;
+    image-rendering: -webkit-optimize-contrast;
+}
