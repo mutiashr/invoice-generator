@@ -174,19 +174,22 @@ function generateQROnCanvas(canvas, text) {
       colorLight: '#fff',
       correctLevel: QRCode.CorrectLevel.M
     });
-    setTimeout(() => {
+setTimeout(() => {
       const img = tmp.querySelector('img') || tmp.querySelector('canvas');
       if (img) {
         if (img.tagName === 'CANVAS') {
           ctx.drawImage(img, 0, 0, size, size);
         } else {
-          const i = new Image();
-          i.onload = () => ctx.drawImage(i, 0, 0, size, size);
-          i.src = img.src;
+          // Solusi khusus Mobile Safari/Chrome: Cek apakah image sudah load
+          if (img.complete) {
+            ctx.drawImage(img, 0, 0, size, size);
+          } else {
+            img.onload = () => ctx.drawImage(img, 0, 0, size, size);
+          }
         }
       }
       document.body.removeChild(tmp);
-    }, 80);
+    }, 250); // Delay dinaikkan dari 80ms ke 250ms agar aman di HP
   }
 }
 

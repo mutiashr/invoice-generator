@@ -921,6 +921,17 @@
         margin-left: 0 !important;
         width: 100% !important;
     }
+
+    .inv-qris-container.visible {
+    display: flex !important; /* Paksa muncul di HP */
+    visibility: visible;
+    opacity: 1;
+}
+#d-qris-canvas {
+    /* Pastikan canvas punya ukuran visual yang jelas di HP */
+    width: 220px !important; 
+    height: 220px !important;
+}
 /* Memastikan invoice tidak keluar jalur layar HP */
     .invoice-doc {
         width: 720px; /* Tetap kunci lebar asli */
