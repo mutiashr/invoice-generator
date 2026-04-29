@@ -881,8 +881,17 @@
         height: auto; 
         position: relative; 
     }
-    .preview-panel { padding: 10px; }
-    .invoice-doc { border-radius: 0; }
+    .preview-panel {
+        padding: 10px;
+        overflow-x: auto; /* Memungkinkan scroll horizontal jika perlu */
+        display: flex;
+        justify-content: center;
+    }
+    .invoice-doc {
+        transform: scale(0.5); /* Mengecilkan tampilan secara visual di HP */
+        margin-top: -180px; /* Menyesuaikan posisi akibat scaling */
+        margin-bottom: -180px;
+    }
 }
 
 @media (max-width: 600px) {
