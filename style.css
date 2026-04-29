@@ -358,14 +358,19 @@
     width: 100%;
   }
 
-  .preview-toolbar {
+.preview-toolbar {
     width: 100%;
     max-width: 720px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 28px;
-  }
+    position: sticky; /* Bikin toolbar tetap nempel saat di-scroll */
+    top: 0;
+    background: var(--paper-warm); /* Warna background biar tidak transparan */
+    z-index: 10;
+    padding: 10px 0;
+}
 
   .preview-title {
     font-family: 'Playfair Display', serif;
