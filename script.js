@@ -158,13 +158,9 @@ function generateQROnCanvas(canvas, text) {
   ctx.fillStyle = '#fff';
   ctx.fillRect(0, 0, size, size);
 
-  // Use Image approach: generate via google charts API-like local approach
-  // Since we have jsQR for decoding but not encoding, use a QR encode lib
-  // We'll load qrcodejs dynamically if not present
   if (typeof QRCode !== 'undefined') {
-    // Create temp div, generate, copy to canvas
     const tmp = document.createElement('div');
-    tmp.style.display = 'none';
+    tmp.style.cssText = 'position:fixed;left:-9999px;top:-9999px;visibility:hidden;';
     document.body.appendChild(tmp);
     const qr = new QRCode(tmp, {
       text: text,
@@ -174,22 +170,42 @@ function generateQROnCanvas(canvas, text) {
       colorLight: '#fff',
       correctLevel: QRCode.CorrectLevel.M
     });
-setTimeout(() => {
-      const img = tmp.querySelector('img') || tmp.querySelector('canvas');
-      if (img) {
-        if (img.tagName === 'CANVAS') {
-          ctx.drawImage(img, 0, 0, size, size);
+
+    function drawAndCleanup() {
+      const imgEl = tmp.querySelector('img');
+      const canvasEl = tmp.querySelector('canvas');
+
+      if (canvasEl) {
+        // Desktop: QRCode render via canvas langsung
+        ctx.drawImage(canvasEl, 0, 0, size, size);
+        document.body.removeChild(tmp);
+      } else if (imgEl) {
+        // Mobile: QRCode render via <img> — tunggu sampai benar-benar loaded
+        const finalize = () => {
+          try { ctx.drawImage(imgEl, 0, 0, size, size); } catch(e) {}
+          if (document.body.contains(tmp)) document.body.removeChild(tmp);
+        };
+        if (imgEl.complete && imgEl.naturalWidth > 0) {
+          finalize();
         } else {
-          // Solusi khusus Mobile Safari/Chrome: Cek apakah image sudah load
-          if (img.complete) {
-            ctx.drawImage(img, 0, 0, size, size);
-          } else {
-            img.onload = () => ctx.drawImage(img, 0, 0, size, size);
-          }
+          imgEl.onload = finalize;
+          imgEl.onerror = () => {
+            if (document.body.contains(tmp)) document.body.removeChild(tmp);
+          };
         }
+      } else {
+        // Belum render, coba lagi
+        if (document.body.contains(tmp)) document.body.removeChild(tmp);
       }
-      document.body.removeChild(tmp);
-    }, 250); // Delay dinaikkan dari 80ms ke 250ms agar aman di HP
+    }
+
+    // Beri waktu QRCode library selesai render DOM-nya
+    // Low-end Android butuh lebih lama, pakai requestAnimationFrame + fallback timeout
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        drawAndCleanup();
+      });
+    });
   }
 }
 
@@ -327,6 +343,8 @@ function renderInvoice() {
   } else { notesBlock.classList.remove('visible'); }
 
   // QRIS — always visible, dynamic or static
+  const qrisContainer = document.getElementById('d-qris-container');
+  if (qrisContainer) qrisContainer.classList.add('visible');
   const qrisAmt = document.getElementById('d-qris-amount');
   const qrisLabel = document.getElementById('d-qris-label');
   if (opts['qris-dynamic'] && total > 0) {
