@@ -331,11 +331,11 @@ function renderInvoice() {
     drawQrisToCanvas(dynPayload);
     qrisAmt.classList.add('visible');
     qrisAmt.textContent = formatRp(total);
-    if (qrisLabel) qrisLabel.textContent = '@mcnsterjae · Dinamis';
+    if (qrisLabel) qrisLabel.textContent = 'SCAN HERE | QRIS | @mcnsterjae · Dinamis';
   } else {
     drawQrisToCanvas(buildStaticQris());
     qrisAmt.classList.remove('visible');
-    if (qrisLabel) qrisLabel.textContent = '@mcnsterjae';
+    if (qrisLabel) qrisLabel.textContent = 'SCAN HERE | QRIS | @mcnsterjae';
   }
 
   // Status
