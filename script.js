@@ -151,7 +151,7 @@ function drawQrisToCanvas(payload) {
 // Minimal QR matrix generator using qr-code-styling approach
 // We use a canvas-based QR renderer
 function generateQROnCanvas(canvas, text) {
-  const size = 120;
+  const size = 800;
   canvas.width = size;
   canvas.height = size;
   const ctx = canvas.getContext('2d');
