@@ -392,7 +392,7 @@ async function exportAs(format) {
   const invNumber = document.getElementById('inv-number').value || 'invoice';
   try {
     const canvas = await html2canvas(el, {
-      scale: 3,
+      scale: 5,
       useCORS: true,
       allowTaint: true,
       backgroundColor: '#ffffff',
