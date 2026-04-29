@@ -24,30 +24,42 @@
   }
 
   /* ── APP SHELL ── */
-  .app { display: flex; min-height: 100vh; }
+  .app {
+    display: flex;
+    flex-direction: row; /* Desktop: Berjejer samping */
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden; /* Mencegah scroll horizontal pada container utama */
+}
 
-  .sidebar {
+.sidebar {
     width: 420px;
     min-width: 420px;
     background: var(--ink);
     color: #fff;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
-    position: sticky;
+    /* Kunci posisi di kiri PC agar tidak mengambang/menindih sembarangan */
+    position: fixed; 
+    left: 0;
     top: 0;
+    bottom: 0;
     height: 100vh;
-  }
+    z-index: 100;
+    overflow: hidden; /* Main container jangan scroll, biar body-nya aja */
+}
 
   .sidebar-header {
     padding: 32px 28px 24px;
     border-bottom: 1px solid rgba(255,255,255,0.08);
   }
 
-  .preview-panel {
+.preview-panel {
+    margin-left: 420px; /* Beri jarak selebar sidebar */
     flex: 1;
-    padding: 20px; /* Diperkecil dari 40px */
-    width: 100%;
+    padding: 40px;
+    background: var(--paper-warm);
+    min-height: 100vh;
 }
 
   .brand {
@@ -74,7 +86,15 @@
 
   .brand-sub { font-size: 12px; color: rgba(255,255,255,0.45); letter-spacing: 0.08em; text-transform: uppercase; }
 
-  .sidebar-body { padding: 20px 28px; flex: 1; }
+.sidebar-body {
+    padding: 24px 28px;
+    flex: 1;
+    /* Ini kunci biar scroll-nya enak dan muncul */
+    overflow-y: auto; 
+    overflow-x: hidden;
+    scrollbar-width: thin; /* Untuk Firefox */
+    scrollbar-color: var(--accent) transparent;
+}
 
   .section-label {
     font-size: 10px;
@@ -789,9 +809,22 @@
   }
 
   /* SCROLLBAR */
-  .sidebar::-webkit-scrollbar { width: 4px; }
-  .sidebar::-webkit-scrollbar-track { background: transparent; }
-  .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+  .sidebar::-webkit-scrollbar {
+    width: 6px; /* Lebar scrollbar */
+    display: block !important; /* Paksa muncul */
+}
+.sidebar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05); /* Sedikit kontras agar jalurnya kelihatan */
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(200, 169, 110, 0.3); /* Gunakan warna aksen emasmu tapi transparan */
+    border-radius: 10px;
+    border: 1px solid transparent;
+}
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--accent); /* Jadi emas solid saat disentuh */
+}
+  
 
   @media print { body { display: none; } }
 
@@ -877,22 +910,23 @@
 
   @media (max-width: 900px) {
     .app { flex-direction: column; }
-    .sidebar { 
-        width: 100%; 
-        min-width: 100%; 
-        height: auto; 
-        position: relative; 
+.sidebar {
+        position: relative !important;
+        width: 100% !important;
+        min-width: 100% !important;
+        height: auto !important;
+        margin-left: 0 !important;
     }
-    .preview-panel {
-        padding: 10px;
-        overflow-x: auto; /* Memungkinkan scroll horizontal jika perlu */
-        display: flex;
-        justify-content: center;
+.preview-panel {
+        margin-left: 0 !important;
+        width: 100% !important;
     }
+/* Memastikan invoice tidak keluar jalur layar HP */
     .invoice-doc {
-        transform: scale(0.5); /* Mengecilkan tampilan secara visual di HP */
-        margin-top: -180px; /* Menyesuaikan posisi akibat scaling */
-        margin-bottom: -180px;
+        width: 720px; /* Tetap kunci lebar asli */
+        transform: scale(0.48); /* Perkecil sesuai lebar HP rata-rata */
+        transform-origin: top center;
+        margin: 0 auto -380px auto; /* Margin negatif bawah untuk hapus gap kosong */
     }
 }
 
